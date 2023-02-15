@@ -5,6 +5,23 @@ body{
     width: 100%;
 }
 
+section{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.oculto{
+    display: none;
+}
+
+@media(min-width:1024px){
+    .div-burger{
+        display: none;
+    }
+}
+
 @media(max-width:550px){
     .formulario{
         width: 300px;
