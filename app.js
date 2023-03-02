@@ -1,16 +1,16 @@
-// función de btn burge
-const menuBurgerBtn = (e) => document.getElementById(`div-burger`).classList.toggle(`oculto`)
+const $ = (selector) => document.querySelector(selector);
 
-document.getElementById("btnBurge").addEventListener(`click`, menuBurgerBtn)
+// función de btn burge
+$("#btnBurge").addEventListener(`click`, (e) => document.getElementById(`div-burger`).classList.toggle(`oculto`))
 
 
 // función de ocultar vista principal y mostrar formulario 
 const isHiddenForm = (e) =>{
-    document.getElementById("formulario").classList.remove("oculto")
-    document.getElementById("vista-principal").classList.add("oculto")
+    $("#formulario").classList.remove("oculto")
+    $("#vista-principal").classList.add("oculto")
 }
-document.getElementById("btn-create").addEventListener("click", isHiddenForm)
-document.getElementById("btn-create2").addEventListener("click", isHiddenForm)
+$("#btn-create").addEventListener("click", isHiddenForm)
+$("#btn-create2").addEventListener("click", isHiddenForm)
 
 
 
@@ -18,20 +18,19 @@ document.getElementById("btn-create2").addEventListener("click", isHiddenForm)
 const isHiddenHome = ("click", (e) =>{
     window.location.reload()
 })
-document.getElementById("btn-home").addEventListener("click", isHiddenHome)
-document.getElementById("btn-home2").addEventListener("click", isHiddenHome)
-document.getElementById("btn-cancelar").addEventListener("click", isHiddenHome)
+$("#btn-home").addEventListener("click", isHiddenHome)
+$("#btn-home2").addEventListener("click", isHiddenHome)
+$("#btn-cancelar").addEventListener("click", isHiddenHome)
 
 
 // BASE URL 
 const BASE_URL = "https://63eb9028bfdd4299674a8f24.mockapi.io/api/";
 
-const $ = (selector) => document.querySelector(selector);
 
 // CREAR ARTICULO (METODO POST)
-const registerJob = async () => {
+const crearArt = async () => {
   try {
-    const article = getJobForm();
+    const article = datosForm();
 
     const response = await fetch(`${BASE_URL}/articles`,{
       method: 'POST',
@@ -51,7 +50,14 @@ const registerJob = async () => {
   }
 };
 
-const getJobForm = () => {
+$("#form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    crearArt();
+  });
+
+
+// datos de formulario
+const datosForm = () => {
   return {
       title: $("#title-input").value,
       description: $("#description-input").value,
@@ -61,10 +67,7 @@ const getJobForm = () => {
     };
 };
 
-$("#form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  registerJob();
-});
+
 
 
 
