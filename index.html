@@ -86,32 +86,34 @@
            </div>
    
            <!-- FORMULARIO -->
+           <form id="form">
            <main class="has-background-grey-lighter oculto formulario" id="formulario">
+            
                <div class="field">
                    <label class="label">Title</label>
                    <div class="control">
-                     <input class="input" type="text" placeholder="....">
+                     <input id="title-input" class="input" type="text" placeholder="....">
                    </div>
                  </div>
    
                  <div class="field">
                    <label class="label">Description</label>
                    <div class="control">
-                     <textarea class="textarea" placeholder="...."></textarea>
+                     <textarea class="textarea" placeholder="...." id="description-input"></textarea>
                    </div>
                  </div>
    
                  <div class="field">
                    <div class="control">
                      <div class="select">
-                       <select>
-                           <option>Select location</option>
-                           <option>Remote</option>
-                           <option>Brazil</option>
-                           <option>EEUU</option>
-                           <option>Argentina</option>
-                           <option>Colombia</option>
-                           <option>Spain</option>
+                       <select id="location-select">
+                           <option value="no location">Select location</option>
+                           <option value="Remote">Remote</option>
+                           <option value="Brazil">Brazil</option>
+                           <option value="EEUU">EEUU</option>
+                           <option value="Argentina">Argentina</option>
+                           <option value="Colombia">Colombia</option>
+                           <option value="Spain">Spain</option>
                        </select>
                      </div>
                    </div>
@@ -120,14 +122,14 @@
                  <div class="field">
                    <div class="control">
                      <div class="select">
-                       <select>
-                           <option>Select Category</option>
-                           <option value="">Frontend</option>
-                           <option value="">Backend</option>
-                           <option value="">fullstack</option>
-                           <option value="">Development</option>
-                           <option value="">QA</option>
-                           <option value="">UX/UI</option>
+                       <select id="category-select">
+                           <option value="no category">Select Category</option>
+                           <option value="Frontend">Frontend</option>
+                           <option value="Backend">Backend</option>
+                           <option value="fullstack">fullstack</option>
+                           <option value="Development">Development</option>
+                           <option value="QA">QA</option>
+                           <option value="UX/UI">UX/UI</option>
                        </select>
                      </div>
                    </div>
@@ -136,11 +138,11 @@
                  <div class="field">
                    <div class="control">
                      <div class="select">
-                       <select>
-                           <option>Select seniority</option>
-                           <option>Junior</option>
-                           <option>Semisenior</option>
-                           <option>Senior</option>
+                       <select id="seniority-select">
+                           <option value="no seniority">Select seniority</option>
+                           <option value="Junior">Junior</option>
+                           <option value="Semisenior">Semisenior</option>
+                           <option value="Senior">Senior</option>
                        </select>
                      </div>
                    </div>
@@ -149,13 +151,15 @@
                  
                  <div class="field is-grouped">
                    <div class="control">
-                     <button class="button is-link">Create</button>
+                     <button class="button is-link" id="btn-guardar">Create</button>
                    </div>
                    <div class="control">
-                     <button class="button is-link is-light">Cancel</button>
+                     <button class="button is-link is-light" id="btn-cancelar">Cancel</button>
                    </div>
                  </div>
            </main>
+          </form>
+          
        </div>
        </section>
        <script src="app.js"></script>
