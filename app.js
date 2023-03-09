@@ -13,7 +13,6 @@ $("#btn-create").addEventListener("click", isHiddenForm)
 $("#btn-create2").addEventListener("click", isHiddenForm)
 
 
-
 // función de btn home y btn de cancelar operación
 const isHiddenHome = ("click", (e) =>{
     window.location.reload()
@@ -25,7 +24,6 @@ $("#btn-cancelar").addEventListener("click", isHiddenHome)
 
 // BASE URL 
 const BASE_URL = "https://63eb9028bfdd4299674a8f24.mockapi.io/api/";
-
 
 // CREAR ARTICULO (METODO POST)
 const crearArt = async () => {
@@ -50,11 +48,11 @@ const crearArt = async () => {
   }
 };
 
+
 $("#form").addEventListener("submit", (e) => {
     e.preventDefault();
     crearArt();
   });
-
 
 // datos de formulario
 const datosForm = () => {
@@ -68,6 +66,50 @@ const datosForm = () => {
 };
 
 
+
+
+const pintarCards = (articles) => {
+    $('#cards-content').innerHTML = "";
+    for (const article of articles) {
+        const { title, description, location, category, seniority, id } = article;
+        $("#cards-content").innerHTML += `
+              <div class="myClassCards card">
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title is-4">${title}</p>
+                    </div>
+                  </div>
+                  <div class="content">
+                    <p class="is-size-7 is-size-6-mobile">${description}</p>
+                  </div>
+                  <div class="media is-flex-wrap-wrap">
+                    <p class="button is-primary is-light is-small" style="margin:2px">${location}</p>
+                    <p class="button is-primary is-light is-small" style="margin:2px">${seniority}</p>
+                    <p class="button is-primary is-light is-small" style="margin:2px">${category}</p>
+                  </div>
+                  <div class="control">
+                    <button class="button is-small is-link btn-see-details" data-id="${id}">See Details</button>
+                  </div>
+                </div>
+              </div>
+        `;
+    }
+}
+
+// OBTENER LOS OBJ (METODO GET)
+const getArticles = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/articles`);
+      const articles = await response.json();
+      pintarCards(articles) 
+      
+    } 
+    catch (error) {
+        alert("Page not available at this time");
+    }
+  };
+getArticles()
 
 
 
