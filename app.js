@@ -22,7 +22,7 @@ const isHiddenHome = ("click", (e) =>{
 $("#btn-home").addEventListener("click", isHiddenHome)
 $("#btn-home2").addEventListener("click", isHiddenHome)
 $("#btn-cancelar").addEventListener("click", isHiddenHome)
-
+$('#cancel-delete').addEventListener("click", isHiddenHome)
 
 // BASE URL 
 const BASE_URL = "https://63eb9028bfdd4299674a8f24.mockapi.io/api/";
@@ -100,7 +100,6 @@ const pintarCards = (articles) => {
         const id = button.getAttribute('data-id');
         $("#vista-principal").classList.add('oculto');
         $('#editarOEliminarCard').classList.remove('oculto');
-        console.log(id)
         getArticle(id)
       })
     }
@@ -123,7 +122,6 @@ getArticles()
 
 
 // PARA EDITAR O ELIMINAR ARTICULO DE TRABAJO 
-
 const getArticle = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/articles/${id}`);
@@ -133,7 +131,6 @@ const getArticle = async (id) => {
     alert("error")
   }
 };
-
 
 const formEditarEliminar = ({ title, description, location, category, seniority, id}) => {
   $("#editarOEliminarCard").innerHTML = "";
@@ -161,20 +158,37 @@ const formEditarEliminar = ({ title, description, location, category, seniority,
   </div>
 </div> 
   ` 
+  $(".btn-delete-article").addEventListener("click", () => {
+    $(".btn-delete-article").setAttribute("data-id", id);
+    DeleteConfirm();
+    $('#btn-delete-confirm').setAttribute("data-id", id);
+  });
 };
 
 
+// METODO DELETE
+const deleteArticle = async (id) => {
+  try {
+       await fetch(`${BASE_URL}articles/${id}`,{
+       method: 'DELETE',
+ 
+     });
+ 
+   } catch (error) {
+     alert("Error deleting article")
+         
+   } finally{
+    isHiddenHome()
+   }
+ };
 
+ $("#btn-delete-confirm").addEventListener("click", () =>{
+  deleteArticle($("#btn-delete-confirm").getAttribute("data-id"))
+});
 
-
-
-
-
-
-
-
-
-
+const DeleteConfirm = () => {
+  $('#divConfirmArticle').classList.remove("oculto");
+}
 
 
 
